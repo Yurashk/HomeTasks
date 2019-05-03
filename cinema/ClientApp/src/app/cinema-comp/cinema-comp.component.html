@@ -1,0 +1,78 @@
+<div *ngIf="!resultWind" class="container">
+  <!-- Вывод и выбор фильмов -->
+  <div class="row justify-content-center " >
+    <div class="col-md-6 row justify-content-center "><h3>Choose Film!!!</h3></div>
+  </div>
+  <div class="row justify-content-center " >
+   <div *ngFor="let film of forecasts" [ngClass]="{'active':film.active,'passiv':film.passivFilm}" class="col-sm-2 border justify-content-center pt-5 films" (click)="onSelectFilm(film)">
+        <h3  class="row justify-content-center ">{{film.Name}}</h3>
+         
+    </div>
+    
+    
+  </div>
+  <!-- Вывод дат соответствующих выбранному времени -->
+  <div *ngIf="selectedFilm" class="row justify-content-center mt-5 " >
+      <div class="col-12 row justify-content-center "><h3>Choose Date which u preffer!!!</h3></div>
+      <div *ngFor = "let date of selectedFilm.DateTimePlaces"  [ngClass]="{'active': date.active,'passiv':date.passiv}" class="col-sm-1 pt-1 border justify-content-center dateTime"  (click)="selectedDates(date)">
+        {{date.dateTime.split('T')[0] + ' ' + date.dateTime.split('T')[1] }}
+       </div> 
+   </div>
+   
+   <!-- Заполнение зала местами -->
+    <div *ngIf="selectedDate" class="row justify-content-center " >
+       
+        <div class="col-7 col-sm-10  row justify-content-center mr-5" ><div class=" border" style="height:20px;width:20px;border-radius:3px;background-color: black"></div><div class="col-3">-NoReserved</div></div>
+        <div class="col-7 col-sm-10  row justify-content-center mt-2 mr-5" ><div class="border reservedPlaces" style="height:20px;width:20px;border-radius:3px;"></div><div class="col-3" >-Reserved</div></div>
+      </div>
+   <div *ngIf="selectedDate" class="row justify-content-center"> 
+      
+      <div class="col-md-6  row justify-content-center cinemaBox">
+         
+        <div *ngFor="let place of selectedDate.places"  class=" seats col-2 m-1" align="center" [ngClass]="reservedPlace(place)" (click)="selectedPlaces(place)">
+           
+              {{place.id}}
+         
+        </div>
+      </div>
+      
+      <div class="col-12 row justify-content-center "><h3>Экран</h3></div>
+      <div class="col-6 row justify-content-center ">
+          <div class="col-6 btn btn-primary mb-5" (click)="result()">DONE</div>
+      </div>
+     
+   </div>
+   <!-- Выбор мест -->
+    <!-- <div *ngIf="selectedPlace " class="row justify-content-center ">
+     <div class="col-6 ">
+        <ul>
+          <li *ngFor="let seat of reservedSeats">{{seat}}</li>
+        </ul>
+     </div>
+   </div>  -->
+
+</div>
+<div *ngIf="resultWind">
+    <div class="container">
+        <div class=" row justify-content-center ">
+            <div class="col-6 row justify-content-center "><h3>Your ticket!!!</h3></div>
+        </div>
+      <div class="row justify-content-center ">
+       
+        <div class="col-md-4  col-sm-10 text-dark round ticket p-3" style="background-color: rgb(150, 190, 168);height: 150px;" >
+          
+          <div class="finalChoose">Фильм:{{selectedFilm.Name}}</div>
+          
+          <div class="finalChoose ">Дата:{{selectedDate.dateTime.split('T')[0] + ' ' + selectedDate.dateTime.split('T')[1] }}</div> 
+          <div class="finalChoose">Мест:{{counter}}</div>
+          <div class="finalChoose">Стоимость:{{counter*30}}$</div>
+         
+         
+        </div>
+      </div>
+      <div class=" row justify-content-center ">
+          <div class="col-md-4  btn btn-primary mt-5" (click)="result()">
+              send by email</div>
+      </div>
+    </div>
+</div>

@@ -10,6 +10,9 @@ class BurgerController {
     });
     this._getSize();
     this._getStuffing();
+    this._getViewsize();
+
+    
   }
 
   _getSize() {
@@ -19,6 +22,11 @@ class BurgerController {
       });
     });
   }
+  _getViewsize(){
+    this._view.setSizes('Size');
+    
+    this._view.getViewSize(this._model.setViewSize());
+   }
   _getStuffing(){
     this._view.listenStuffingChange(stuffName =>{
       this._model.setStuffing(stuffName,data =>{

@@ -12,6 +12,13 @@ class BurgerModel {
     this._size = this.getSize('small');
     this._stuffing = this.getStuffing('pork');
   }
+  setViewBurgerData(cb){
+    cb( this._data);
+  }
+  setViewSize(){
+    let arr=this._data.sizes.map(s=>s.name);
+    return arr;
+  }
 ///////METHOD TO FIND SIZE IN SIZES////////////
   getSize(name) {
     let size = this._data.sizes.find(s => s.name === name);
