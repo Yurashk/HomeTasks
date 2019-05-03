@@ -42,17 +42,7 @@ export class CinemaCompComponent implements OnInit {
     this.selectedFilm=null;
     this.selectedFilm = film;
     
-    if(this.selectedFilm.active){
-      this.selectedFilm.passivFilm;
-    }
-    else if(this.resivedFilm && this.selectedFilm!=this.resivedFilm){
-
-      this.selectedFilm=this.resivedFilm;
-      this.selectedFilm.active=!this.selectedFilm.active;
-      this.selectedFilm=film;
-    }
-    this.selectedFilm.active=!this.selectedFilm.active;
-    this.resivedFilm=film;
+   
   }
   // Выбор даты
   reservedDates:DateTimePlace;
